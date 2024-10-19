@@ -1,0 +1,38 @@
+name: Gatau
+
+on:
+  schedule:
+    - cron: '0 */5 * * *' 
+  push:
+    branches:
+      - main
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'  
+
+      - name: apt
+        run: sudo apt-get install -y ffmpeg neofetch
+
+      - name: Sc
+        run: git clone ${{ secrets.sc1 }}
+
+      - name: npm
+        run: |
+          cd wa1
+          npm i -g pm2
+          npm install
+
+      - name: run
+        run: |
+          cd wa1
+          node ghact.js
